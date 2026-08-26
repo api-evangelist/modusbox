@@ -1,0 +1,42 @@
+generated: '2026-08-26'
+method: searched
+source: https://portx.io/ (navigation and sitemap), https://portx.io/contact, https://portx.io/llms.txt
+
+plan_count: 0
+plans: []
+
+pricing_published: false
+pricing_url: null
+model: enterprise contract, contact sales
+
+note: >-
+  PortX publishes no pricing of any kind. There is no /pricing page (probed — HTTP 404),
+  no pricing entry in the site navigation, none in the sitemap, and none in PortX's own
+  llms.txt, which lists every product, solution, resource and datasheet page but no plans
+  or tiers. The commercial motion is a demo request through portx.io/contact. This is
+  consistent with the buyer — community banks and credit unions signing multi-year
+  platform agreements — and with the ORCA licence, which requires a separately executed
+  commercial agreement before any production use and grants only a 90-day evaluation term.
+  No Pricing pointer is emitted in apis.yml because there is no pricing page to point at.
+
+sales_contact:
+  url: https://portx.io/contact
+  status: 200
+  phone: 1.833.667.6789
+  email: hello@portx.io
+  orca_email: orca@portx.io
+
+searched:
+- url: https://portx.io/pricing
+  status: 404
+- url: https://portx.io/llms.txt
+  status: 200
+  result: no pricing or plans section
+- url: https://portx.io/contact
+  status: 200
+  result: demo request form, no published rates
+- url: https://orca-docs.portx.io/license/
+  status: 200
+  result: >-
+    ORCA Evaluation and Access License — 90-day evaluation term, no production use
+    without a separate executed commercial agreement. No fees stated.

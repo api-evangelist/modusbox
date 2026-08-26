@@ -1,0 +1,88 @@
+generated: '2026-08-26'
+method: probed
+source: direct HTTP probe of every PortX host named in apis.yml
+note: >-
+  Every /.well-known/ path probed on both PortX hosts returned 404 with a real
+  not-found body — portx.io answers a 10-byte "Not Found", orca-docs.portx.io answers
+  its ordinary 9,379-byte 404 page. Neither host is a catch-all: both return 200 with
+  real content for paths that exist (portx.io/llms.txt, portx.io/robots.txt,
+  portx.io/sitemap.xml, orca-docs.portx.io/api/), so these 404s are trustworthy
+  negatives rather than an SPA swallowing every request. No WellKnown and no
+  SecurityTxt pointer is emitted in apis.yml: nothing was served, so there is nothing
+  to advertise. This file records a verified absence, which is valid data.
+hit_count: 0
+
+hosts:
+- host: https://portx.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: https://orca-docs.portx.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+
+soft_404_control:
+  note: >-
+    Control probes proving neither host is a catch-all that answers 200 for everything.
+  probes:
+  - url: https://portx.io/llms.txt
+    status: 200
+    bytes: 7562
+  - url: https://portx.io/.well-known/security.txt
+    status: 404
+    bytes: 10
+  - url: https://orca-docs.portx.io/api/
+    status: 200
+    bytes: 39963
+  - url: https://orca-docs.portx.io/.well-known/security.txt
+    status: 404
+    bytes: 9379
+
+not_probed:
+  note: >-
+    api.portx.io and auth.portx.io are documented by PortX as the API and token hosts
+    but do not resolve in DNS (NXDOMAIN, checked 2026-08-26), so no /.well-known/ probe
+    was possible against them. ORCA connector instances are deployed per financial
+    institution on customer-specific hosts that are not publicly enumerable.
+  hosts:
+  - api.portx.io
+  - auth.portx.io

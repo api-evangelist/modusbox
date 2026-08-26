@@ -1,0 +1,95 @@
+generated: '2026-08-26'
+method: searched
+source: >-
+  https://orca-docs.portx.io/api/ (version selector),
+  https://orca-docs.portx.io/assets/js/version-switcher.js,
+  https://orca-docs.portx.io/docs/changelog/, https://status.portx.io/,
+  https://portx.io/about-us/legal/portx-support-maintenance-terms
+
+versioning:
+  scheme: semver
+  current_version: 0.16.3
+  in_url: false
+  note: >-
+    Version is selected per specification document rather than carried in the request
+    path — the API Reference offers a version dropdown that swaps the underlying OpenAPI
+    file. The documented base path is /orca/v1, so the major path segment stays v1 while
+    the specification itself moves through 0.x releases. ORCA is still pre-1.0.
+  published_versions:
+  - 0.16.3
+  - 0.16.2
+  - 0.13.4
+  - 0.13.3
+  - 0.13.2
+  - 0.13.1
+  - 0.12.6
+  - 0.8.0
+  - 0.6.4
+  - 0.6.2
+  - 0.6.1
+
+deprecation:
+  policy_published: false
+  policy_url: null
+  deprecated_versions:
+  - 0.8.0
+  - 0.6.4
+  - 0.6.2
+  - 0.6.1
+  mechanism: >-
+    Deprecated versions are enumerated in a DEPRECATED_VERSIONS constant inside the docs
+    site's own version-switcher.js, which raises an in-page deprecation warning when one
+    is selected. That is a real, machine-readable deprecation signal, but it lives in a
+    documentation asset rather than in a policy document or in the API's responses.
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  deprecated_operations: 0
+  note: >-
+    No operation in the published 0.16.3 description carries `deprecated: true`. Breaking
+    removals do happen (the Documents and Reward Programs endpoint families were removed
+    at 0.16.2) but they were removed outright rather than being marked deprecated for a
+    notice period first. There is no published deprecation policy, no stated notice
+    window, and no RFC 8594 Sunset/Deprecation response headers.
+
+status_page:
+  present: true
+  url: https://status.portx.io/
+  provider: Atlassian Statuspage
+  http_status: 200
+  subscriptions:
+  - email
+  - sms
+  note: Covers PortX platform incidents; subscribers can opt in to create/update/resolve
+    notifications.
+
+sla:
+  published: false
+  note: >-
+    No public SLA or uptime commitment. Support and maintenance terms are published as a
+    legal document at portx.io/about-us/legal/portx-support-maintenance-terms; specific
+    availability targets are contractual rather than public. The ORCA Evaluation and
+    Access License states the evaluation Sandbox Environment carries no uptime
+    commitment, performance guarantee or support obligation (Section 2.8).
+
+support:
+  url: https://portx.atlassian.net/servicedesk/customer/portals
+  type: Atlassian Service Desk
+  http_status: 200
+  contact: orca@portx.io
+
+gaps:
+- No published deprecation policy or notice window, despite shipping breaking removals.
+- No Sunset or Deprecation response headers (RFC 8594).
+- Changelog entries carry no dates.
+- API is pre-1.0 (0.16.3) with breaking changes inside the 0.16.x line.
+
+x-evidence:
+- url: https://orca-docs.portx.io/assets/js/version-switcher.js
+  status: 200
+- url: https://orca-docs.portx.io/docs/changelog/
+  status: 200
+- url: https://status.portx.io/
+  status: 200
+- url: https://portx.io/about-us/legal/portx-support-maintenance-terms
+  status: 200

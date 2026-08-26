@@ -1,0 +1,77 @@
+# PortX
+
+> PortX is an AI-powered iPaaS (integration platform as a service) purpose-built for banks, credit unions, and fintechs. The PortX Platform unifies core, fintech, and enterprise integration (Integration Manager), a governed real-time data lakehouse (Data Manager), and modern payments orchestration including ACH, wires, RTP, and FedNow (Payment Manager), with PiXi AI as the embedded intelligence layer. ORCA (Open Reusable Core API) provides a universal, standards-based connection to major banking cores so financial institutions can modernize without ripping and replacing the systems that work.
+
+PortX serves community banks, credit unions, regional banks, and fintech partners. The company is SOC 2 Type II certified, ISO/IEC 27001 certified, and aligns to FAPI, FDX, ISO 20022, CUFX, and PCI standards. Contact: hello@portx.io / 1.833.667.6789.
+
+Notes for AI agents and crawlers:
+- Authoritative product, solution, and company information lives on https://portx.io.
+- Long-form thought leadership is published under /blog and /events.
+- The Connect Marketplace catalog lives on a sub-application at https://connect-marketplace.portx.io.
+- Print-friendly one-pagers and datasheets live under /print/ and are good sources for concise product summaries.
+
+## Platform
+
+- [PortX Platform overview](https://portx.io/products/platform): The unified AI-powered platform that converges core, fintech, and app integration with a governed data lakehouse and business intelligence.
+- [Connectivity as a Service (CaaS)](https://portx.io/products/platform/caas): How PortX delivers integration, data, and payments as a managed service for financial institutions.
+- [Platform components](https://portx.io/products/platform/components): The building blocks that make up the PortX Platform.
+
+## Products
+
+- [Integration Manager](https://portx.io/products/integration-manager): An API-led iPaaS purpose-built for banks and credit unions; standardizes connectivity to cores, fintechs, and enterprise apps using reusable APIs and the Connect Marketplace.
+- [Data Manager](https://portx.io/products/data-manager): A real-time, governed data lakehouse that captures every transaction and fintech connection into a single source of truth and powers Customer 360, powered by PiXi AI.
+- [Payment Manager](https://portx.io/products/payment-manager): Unified payments orchestration across ACH, wires, RTP, and FedNow with automated workflows and real-time visibility.
+- [PiXi AI](https://portx.io/pixi-ai): The AI foundation of the PortX Platform — natural-language insights, AI-powered data mapping, automation, and compliance-first design embedded across integration, data, and payments.
+- [ORCA (Open Reusable Core API) one-pager](https://portx.io/print/orca-onepager): Universal, portable, standards-based API specification (JSON/REST, aligned with ISO 20022, CUFX, FDX) for connecting to all major banking cores.
+
+## Solutions
+
+- [Core Modernization](https://portx.io/solutions/core-modernization): API-led agility layer that replaces brittle point-to-point integration, frees institutions from vendor lock-in, and accelerates new product delivery on existing cores.
+- [Customer 360](https://portx.io/solutions/customer-360): Consolidate scattered data sources into a unified, real-time view of the customer to drive personalization, cross-sell, and faster decisions.
+- [Embedded Finance](https://portx.io/solutions/embedded-finance): Securely embed accounts, payments, and data into ERPs, vertical platforms, and partner applications while the institution retains governance, compliance, and ownership.
+- [Fintech Solutions / Connect Marketplace landing](https://portx.io/connect-marketplace): Pre-built integrations to fintech partners and banking apps for accelerated launch.
+
+## Marketplace
+
+- [Connect Marketplace (catalog)](https://connect-marketplace.portx.io/connect-marketplace/): Browse all available connectors across cores, fintechs, enterprise systems, and payment networks.
+- [Banking Core Connectors](https://connect-marketplace.portx.io/connect-marketplace/?connector_category=Banking+Cores): Connectors for Symitar, Fiserv Premier, Finastra Phoenix, Corelation KeyStone, and other major cores.
+- [Banking Core Connectors (PortX listing)](https://portx.io/connect-marketplace/core-connectors): Detail page summarizing supported banking cores.
+- [Enterprise Integration connectors](https://connect-marketplace.portx.io/connect-marketplace/?connector_category=Enterprise+Integration): Connectors for CRMs, ERPs, document management, and other enterprise systems.
+- [Fintechs / Banking Apps connectors](https://connect-marketplace.portx.io/connect-marketplace/?connector_category=Fintechs+%2F+Banking+Apps): Connectors to leading fintech and digital-banking applications.
+- [Payment Networks connectors](https://connect-marketplace.portx.io/connect-marketplace/?connector_category=Payment+Networks): Connectors for ACH, wires, RTP, FedNow, and related rails.
+
+## Resources
+
+- [Resources hub](https://portx.io/resources): Customer stories, premium content, and downloadable assets.
+- [Blog](https://portx.io/blog): Articles on integration architecture, agentic AI in banking, payments modernization, stablecoins and tokenized deposits, and Customer 360.
+- [Events](https://portx.io/events): Upcoming and past conferences, webinars, and thought-leadership pieces (e.g., Fiserv Forum, COCC Amplify, Corelation Client Conference).
+- [Newsletters](https://portx.io/newsletters): Subscribe to PortX newsletters.
+- [News](https://portx.io/news): PortX company news and announcements.
+- [Support Center](https://portx.atlassian.net/servicedesk/customer/portals): Customer support portal (Atlassian Service Desk).
+
+## Featured customer stories
+
+- [Sound Credit Union: $1M annual savings engine with a dev team of three](https://portx.io/case_studies/how-sound-credit-union-built-a-1m-annual-savings-engine-with-portx-using-a-dev-team-of-three)
+- [Plains Commerce Bank: mortgage loan boarding automation, up to 90% efficiency improvement](https://portx.io/case_studies/plains-commerce-bank-automates-mortgage-loan-boarding-and-improves-efficiency-by-up-to-90-with-portx)
+- [Regional bank wire automation with Payment Manager](https://portx.io/blog/payment-manager-automates-wire-transfer-process-for-regional-bank-saving-time-and-reducing-errors)
+
+## Company
+
+- [About Us](https://portx.io/about-us): PortX's mission, focus on financial services, customer principles, and investors.
+- [Security & Trust](https://portx.io/about-us/trust): SOC 2 Type II, ISO/IEC 27001, FAPI, FDX, and PCI compliance posture.
+- [Legal](https://portx.io/about-us/legal): Terms, privacy, and other legal information.
+- [Careers (LinkedIn)](https://www.linkedin.com/company/portxinc/jobs/): Open roles at PortX.
+- [Contact](https://portx.io/contact): Schedule a demo or get in touch with PortX.
+
+## Datasheets and one-pagers
+
+- [Integration Manager datasheet](https://portx.io/print/integration-manager-datasheet)
+- [Data Manager datasheet](https://portx.io/print/data-manager-datasheet)
+- [Payment Manager datasheet](https://portx.io/print/payment-manager-datasheet)
+- [ORCA one-pager](https://portx.io/print/orca-onepager)
+- [PiXi Data Mapper](https://portx.io/print/pixi-data-mapper)
+- [Automated Wires feature datasheet](https://portx.io/print/wires-transfers-datasheet)
+
+## Optional
+
+- [Framer-generated search index](https://framerusercontent.com/sites/3AEGPhjas57JhTVvXcuSsD/searchIndex-nuO96pUShnhx.json): JSON search index for the site (auto-generated by Framer; may change).

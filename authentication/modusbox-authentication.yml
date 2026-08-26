@@ -1,0 +1,105 @@
+generated: '2026-08-26'
+method: searched
+source: >-
+  https://orca-docs.portx.io/docs/getting-started/ (public Getting Started + Authentication
+  guide); security scheme names corroborated against the published ORCA OpenAPI description.
+
+summary: >-
+  ORCA authenticates with a bearer JWT obtained through an OAuth 2.0 client_credentials
+  exchange. The published contract declares two alternative top-level security options —
+  an http/bearer JWT scheme and an openIdConnect scheme — so an institution may either
+  present a PortX-issued token or wire the connector to its own OIDC issuer. Credentials
+  are not self-service: PortX documents that a Client ID, Client Secret and API Key are
+  obtained by contacting a PortX representative.
+
+credential_acquisition:
+  self_service: false
+  signup_url: https://portx.io/contact
+  process: >-
+    "Contact your PortX representative to obtain: Client ID, Client Secret, API Key"
+    (Getting Started). There is no developer signup, no free tier and no key-issuance
+    console. Production use additionally requires a separately executed commercial
+    agreement with PortX per the ORCA licence.
+  credentials_issued:
+  - Client ID
+  - Client Secret
+  - API Key
+
+schemes:
+- id: jwt
+  type: http
+  scheme: bearer
+  bearer_format: JWT
+  in: header
+  header: Authorization
+  value_prefix: 'Bearer '
+  description: Bearer authentication using a signed JWT access token.
+  primary: true
+- id: openIdConnect
+  type: openIdConnect
+  description: OpenID Connect authentication via the configured discovery endpoint.
+  discovery_url_in_spec: http://localhost:8083/auth/realms/openbanking/.well-known/openid-configuration
+  discovery_note: >-
+    The discovery URL shipped in the published description is a localhost Keycloak realm
+    placeholder, not a reachable issuer. This is consistent with ORCA being deployed as a
+    per-institution connector where each deployment configures its own issuer, but it
+    means the published contract does not name a real OIDC issuer an integrator could
+    resolve.
+
+token_flow:
+  protocol: OAuth 2.0
+  grant_type: client_credentials
+  token_endpoint_documented: https://auth.portx.io/oauth/token
+  token_endpoint_resolves: false
+  token_endpoint_note: >-
+    auth.portx.io does not resolve in DNS (NXDOMAIN, probed 2026-08-26). As with
+    api.portx.io, the documented host appears illustrative; a real deployment issues
+    tokens from the issuer configured for that institution's connector.
+  request_content_type: application/json
+  request_fields:
+  - client_id
+  - client_secret
+  - grant_type
+  response: 'bearer access token presented as `Authorization: Bearer <token>`'
+
+scopes:
+  published: false
+  note: >-
+    No OAuth scopes are declared. Both security schemes are applied with empty scope
+    arrays and no scope reference page exists in the documentation, so no scopes/
+    artifact is written — there is no scope surface to record.
+
+request_context_headers:
+  note: >-
+    Beyond authentication, ORCA carries deployment context in headers rather than in the
+    token, which an integrator must supply per call.
+  headers:
+  - name: servicerId
+    required: false
+    purpose: Account servicer identification (the bank).
+  - name: servicerBranchId
+    required: false
+    purpose: Account servicer identification at branch or centre level.
+
+transport_security:
+  tls_required: true
+  mtls: >-
+    Not declared in the ORCA contract. PortX does ship automated mTLS management for
+    Integration Manager hosted APIs (announced on the PortX blog), which is a platform
+    capability rather than an ORCA contract requirement.
+
+gaps:
+- No self-service credential issuance; every integrator needs a sales conversation.
+- The documented token host and API host do not resolve.
+- The OIDC discovery URL in the published contract is a localhost placeholder.
+- No scopes, so authorisation granularity is not expressible in the contract.
+- No documented token lifetime, refresh behaviour or rotation guidance.
+
+x-evidence:
+- url: https://orca-docs.portx.io/docs/getting-started/
+  status: 200
+- url: https://auth.portx.io/oauth/token
+  status: 0
+  note: DNS resolution failed (NXDOMAIN)
+- url: https://portx.io/contact
+  status: 200

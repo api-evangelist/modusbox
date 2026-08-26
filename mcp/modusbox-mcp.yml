@@ -1,0 +1,45 @@
+generated: '2026-08-26'
+method: searched
+source: >-
+  https://portx.io/llms.txt, https://portx.io/pixi-ai, https://orca-docs.portx.io/,
+  npm registry search, and /.well-known/ probes on both PortX hosts.
+
+status: none
+
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: searched
+
+note: >-
+  PortX publishes no MCP server. No hosted endpoint is advertised on portx.io, in PortX's
+  own llms.txt (which enumerates every product and resource surface the company wants
+  agents to know about and mentions no MCP), or in the ORCA documentation. No MCP package
+  exists under the @modusbox, @portx or @pm4ml npm scopes, and no /.well-known/ai-plugin.json
+  or agent card is served by either host. PortX does ship an AI layer — PiXi AI, embedded
+  in the platform — but it is a product feature reached through the PortX UI, not an agent
+  surface an external MCP client can call.
+
+  NO CANDIDATE TOOL LIST WAS DERIVED. The pipeline would normally derive a candidate MCP
+  tool list from the provider's OpenAPI operations, but the ORCA description is governed by
+  the ORCA Evaluation and Access License, whose Section 2.4 expressly prohibits the ORCA
+  Materials being ingested or processed by any AI System and whose Section 2.3 prohibits
+  reproduction or publication. Deriving an MCP tool surface from it would do both. See
+  openapi/modusbox-orca-contract-notice.yml.
+
+  No MCPServer pointer is emitted in apis.yml — there is no server to point at.
+
+searched:
+- url: https://portx.io/llms.txt
+  status: 200
+  result: no MCP endpoint or server mentioned
+- url: https://portx.io/.well-known/ai-plugin.json
+  status: 404
+- url: https://orca-docs.portx.io/.well-known/ai-plugin.json
+  status: 404
+- url: https://registry.npmjs.org/-/v1/search?text=modusbox&size=20
+  status: 200
+  result: no MCP package

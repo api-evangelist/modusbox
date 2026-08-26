@@ -1,0 +1,68 @@
+generated: '2026-08-26'
+method: searched
+source: https://orca-docs.portx.io/docs/changelog/
+
+changelog:
+  url: https://orca-docs.portx.io/docs/changelog/
+  scope: PortX ORCA Account Management API
+  scheme: semver
+  current_version: 0.16.3
+  dated_entries: false
+  note: >-
+    PortX maintains a real changelog that marks breaking changes explicitly and lists the
+    endpoints added and removed per release. Entries are versioned but NOT dated — there
+    is no release date on any entry, so a consumer cannot tell how old a version is or
+    how fast the line moves. PortX states each entry is derived from the OpenAPI
+    descriptions offered in the API Reference version selector.
+
+entries:
+- version: 0.16.3
+  latest: true
+  breaking: false
+  additions:
+  - customerNumber.eq query filter on GET /persons and GET /organizations
+  - Standard 405, 415 and 501 responses documented on every operation
+  fixes:
+  - Corrected Percentage and PositivePercentage regex patterns that had rejected valid
+    values such as 100.5 and capped percentages at 100
+  notes: No breaking changes; existing requests continue to work unchanged.
+- version: 0.16.2
+  breaking: true
+  additions:
+  - Credit Transfers - initiation, list, status and cancellation
+  - GET /calendar (business days, hours, holidays) and GET /core (banking core status)
+  - GET /organizations/{organizationId}/loans organization loan exposure
+  removals:
+  - Documents endpoints (POST/GET /documents, GET/PATCH /documents/{documentId})
+  - Reward Programs endpoints and GET /persons/{personId}/reward-programs
+  - Address Book tag
+  breaking_note: >-
+    Clients relying on the Documents or Reward Programs endpoints must migrate; both were
+    removed in this release.
+- version: 0.13.4
+  breaking: false
+  additions:
+  - Credit Transfers, account-scoped Standing Orders, GET /calendar and GET /core on the
+    0.13.x line
+  - Comment gained commentId and creationDateTime; ServicerAlert gained alertId
+  - comments and servicerAlerts arrays added to Account, Person, Organization and Loan
+  changes:
+  - Specification upgraded from OpenAPI 3.0.1 to 3.1.0 and a servers block documenting the
+    connector deployment host was added
+  - All PATCH request bodies typed against request schemas (previously untyped object)
+  - AlternativeTerm.name - invalid maximum constraint corrected to maxLength
+  notes: No endpoints or schemas removed; no breaking changes.
+- version: 0.13.3
+  breaking: false
+  changes:
+  - Version bump only; specification identical to 0.13.2 apart from the version number.
+
+gaps:
+- No release dates on any entry.
+- No RSS/Atom or JSON feed for the changelog.
+- The changelog covers ORCA only; there is no platform-wide changelog for Integration
+  Manager, Data Manager or Payment Manager.
+
+x-evidence:
+- url: https://orca-docs.portx.io/docs/changelog/
+  status: 200

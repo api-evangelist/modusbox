@@ -1,0 +1,34 @@
+generated: '2026-08-26'
+method: searched
+source: >-
+  https://orca-docs.portx.io/docs/getting-started/, https://orca-docs.portx.io/api/,
+  https://portx.io/llms.txt, and the published ORCA OpenAPI 3.1.0 description
+
+limit_count: 0
+limits: []
+
+headers_documented: false
+response_headers: []
+status_on_exhaustion: null
+
+note: >-
+  PortX publishes no rate limits for ORCA. The documentation has no rate-limit, quota or
+  throttling section; no RateLimit-*, X-RateLimit-* or Retry-After header is declared
+  anywhere in the published contract; and no 429 response is defined on any of the 112
+  operations. This is an honest zero, not an unchecked field. It is also consistent with
+  the deployment model — ORCA runs as a per-institution connector in front of that
+  institution's own banking core, so practical throughput is governed by the core and by
+  the commercial agreement rather than by a published public tier. The consequence for an
+  agent is real: there is no runtime signal telling it to back off, and no documented
+  status code telling it that it has been throttled.
+
+searched:
+- url: https://orca-docs.portx.io/docs/getting-started/
+  status: 200
+  result: no rate-limit section
+- url: https://orca-docs.portx.io/api/
+  status: 200
+  result: no 429 response and no rate-limit header on any operation
+- url: https://portx.io/llms.txt
+  status: 200
+  result: no limits or quotas mentioned

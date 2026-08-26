@@ -1,0 +1,141 @@
+generated: '2026-08-26'
+method: searched
+source: >-
+  registry.npmjs.org search + per-package registry metadata; pypi.org; PortX docs
+  (orca-docs.portx.io) and portx.io/llms.txt checked for an SDK section.
+
+summary: >-
+  There is NO client library for the ORCA API. PortX publishes no SDK for it in any
+  registry, and neither the ORCA documentation nor portx.io/llms.txt has an SDK or
+  downloads section — the documented integration path is raw HTTPS with a bearer JWT.
+  The packages below are genuine first-party ModusBox/PortX publications found under the
+  @modusbox and @pm4ml npm scopes, but they belong to the company's earlier Mojaloop and
+  front-end tooling era, not to ORCA. Every @modusbox package is abandoned: the newest
+  was published 2021-11-23, roughly five years before ORCA 0.16.3. Recorded here as an
+  accurate account of what the company ships, not as ORCA SDKs.
+
+orca_sdk_count: 0
+official_package_count: 7
+
+packages:
+- language: javascript
+  registry: npm
+  name: '@modusbox/react-components'
+  url: https://www.npmjs.com/package/@modusbox/react-components
+  install: npm install @modusbox/react-components
+  official: true
+  version: 0.1.9
+  published: '2021-11-23'
+  license: MIT
+  status: abandoned
+  note: React component collection for ModusBox front-end apps. Not an API client.
+- language: javascript
+  registry: npm
+  name: '@modusbox/redux-utils'
+  url: https://www.npmjs.com/package/@modusbox/redux-utils
+  install: npm install @modusbox/redux-utils
+  official: true
+  version: 0.0.11
+  published: '2021-10-21'
+  license: MIT
+  status: abandoned
+  note: TypeScript Redux utilities for ModusBox front-end apps. Not an API client.
+- language: javascript
+  registry: npm
+  name: '@modusbox/microfrontend-utils'
+  url: https://www.npmjs.com/package/@modusbox/microfrontend-utils
+  install: npm install @modusbox/microfrontend-utils
+  official: true
+  version: 0.0.3
+  published: '2021-09-17'
+  license: MIT
+  status: abandoned
+  note: Micro-frontend utilities. Not an API client.
+- language: javascript
+  registry: npm
+  name: '@modusbox/ts-utils'
+  url: https://www.npmjs.com/package/@modusbox/ts-utils
+  install: npm install @modusbox/ts-utils
+  official: true
+  version: 0.0.5
+  published: '2021-09-01'
+  license: MIT
+  status: abandoned
+  note: TypeScript utility collection. Not an API client.
+- language: javascript
+  registry: npm
+  name: '@modusbox/modusbox-ui-components'
+  url: https://www.npmjs.com/package/@modusbox/modusbox-ui-components
+  install: npm install @modusbox/modusbox-ui-components
+  official: true
+  version: 1.23.0
+  published: '2021-07-07'
+  license: Apache-2.0
+  status: abandoned
+  note: ModusBox UI component library. Not an API client.
+- language: javascript
+  registry: npm
+  name: '@modusbox/mojaloop-sdk-standard-components'
+  url: https://www.npmjs.com/package/@modusbox/mojaloop-sdk-standard-components
+  install: npm install @modusbox/mojaloop-sdk-standard-components
+  official: true
+  version: 0.0.39
+  published: '2019-08-14'
+  license: Apache-2.0
+  status: abandoned
+  note: >-
+    The only genuine SDK the company ever published — standard components for connecting
+    to Mojaloop API enabled services. It targets Mojaloop, the open-source cross-border
+    payments platform ModusBox worked on, NOT the ORCA banking-core API. Last published
+    2019; superseded upstream by the mojaloop organisation's own packages.
+- language: javascript
+  registry: npm
+  name: '@pm4ml/connection-manager-api'
+  url: https://www.npmjs.com/package/@pm4ml/connection-manager-api
+  install: npm install @pm4ml/connection-manager-api
+  official: true
+  version: 3.1.1
+  published: '2025-10-29'
+  license: Apache-2.0
+  status: maintained
+  note: >-
+    Described in the registry as "ModusBox Connection Manager API". Published under the
+    @pm4ml (Payment Manager for Mojaloop) scope and still actively released. This is a
+    server component, not a client library for ORCA.
+
+registries_checked:
+- registry: npm
+  result: 7 first-party packages found under @modusbox and @pm4ml; no ORCA client library
+- registry: pypi
+  result: >-
+    No first-party package. The name "portx" on PyPI is taken by an unrelated project
+    (RedRobotics PPX Programmable Port eXpander, v0.0.2) and is NOT PortX, Inc.
+- registry: maven-central
+  result: none found
+- registry: nuget
+  result: none found
+- registry: rubygems
+  result: none found
+- registry: packagist
+  result: none found
+- registry: crates.io
+  result: none found
+- registry: pkg.go.dev
+  result: none found
+
+sdk_pointer_note: >-
+  No `type: SDKs` pointer is emitted in apis.yml. The sdk_count check asks whether this
+  provider ships a client library for its API; PortX ships none for ORCA. The one real
+  SDK found targets a different product line and was last released in 2019, so counting
+  it would credit PortX with an ORCA SDK it does not publish.
+
+x-evidence:
+- url: https://registry.npmjs.org/-/v1/search?text=modusbox&size=20
+  status: 200
+- url: https://registry.npmjs.org/@modusbox%2Freact-components
+  status: 200
+- url: https://registry.npmjs.org/@pm4ml%2Fconnection-manager-api
+  status: 200
+- url: https://pypi.org/pypi/portx/json
+  status: 200
+  note: unrelated project, not PortX Inc.

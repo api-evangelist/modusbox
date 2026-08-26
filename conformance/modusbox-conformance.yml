@@ -1,0 +1,185 @@
+generated: '2026-08-26'
+method: searched
+source: >-
+  https://portx.io/about-us/trust, https://portx.io/llms.txt,
+  https://portx.io/print/orca-onepager, https://orca-docs.portx.io/docs/getting-started/
+
+# ---------------------------------------------------------------------------
+# DOMAIN STANDARD SIGNATURE (0.12.0 domain_standard_conformance)
+# ---------------------------------------------------------------------------
+domain_standard:
+  id: iso20022
+  name: ISO 20022
+  conforms: true
+  sector: banking
+  evidence:
+    contract_location: info.description of the published ORCA OpenAPI 3.1.0 description
+    contract_url: https://orca-docs.portx.io/specs/accounts-api-0.16.3.yaml
+    claim: >-
+      The contract opens by declaring that ORCA semantics and interaction are based on
+      ISO 20022 and restricted to the US banking domain, scoping the covered flows to
+      bank account opening, maintenance, closing and reporting, and noting that every
+      ORCA request message carries an attribute supporting the ISO 20022 digital
+      signature.
+    corroboration:
+    - url: https://portx.io/llms.txt
+      status: 200
+      claim: PortX "aligns to FAPI, FDX, ISO 20022, CUFX, and PCI standards".
+    - url: https://portx.io/print/orca-onepager
+      status: 200
+      claim: >-
+        ORCA described as a universal, portable, standards-based API specification
+        (JSON/REST, aligned with ISO 20022, CUFX, FDX).
+  note: >-
+    This is a genuine domain-standard declaration in the contract itself, not a marketing
+    claim bolted on afterwards — an integrator who already speaks ISO 20022 can map ORCA
+    payloads without a bespoke connector. ORCA is a REST/JSON projection of ISO 20022
+    semantics rather than ISO 20022 XML message transport, so it is standard-ALIGNED at
+    the data-model level rather than a wire-level ISO 20022 implementation.
+
+# ---------------------------------------------------------------------------
+# CERTIFICATIONS — organisational, verified on PortX's own trust page
+# ---------------------------------------------------------------------------
+certifications:
+- id: soc2-type2
+  name: SOC 2 Type II
+  conforms: true
+  evidence:
+    url: https://portx.io/about-us/trust
+    status: 200
+    claim: >-
+      "We adhere to strict industry standards, maintaining certifications such as SOC 2
+      Type 2, ISO 27001, and FAPI." The site footer additionally states PortX complies
+      with industry-standard controls and is SOC2 certified.
+  report_available: false
+  report_note: No public trust portal or report request flow; no Vanta/Drata/SafeBase
+    surface found.
+- id: iso27001
+  name: ISO/IEC 27001
+  conforms: true
+  evidence:
+    url: https://portx.io/about-us/trust
+    status: 200
+    claim: Named as a maintained certification on the PortX Security & Trust page.
+- id: pci
+  name: PCI
+  conforms: partial
+  evidence:
+    url: https://portx.io/llms.txt
+    status: 200
+    claim: >-
+      llms.txt lists PCI among the standards PortX aligns to. No PCI DSS level, AOC or
+      attestation is published, and PCI is not named on the trust page itself, so this is
+      an alignment claim rather than a verified certification.
+
+# ---------------------------------------------------------------------------
+# STANDARDS ALIGNMENT — protocol and sector standards claimed by PortX
+# ---------------------------------------------------------------------------
+standards:
+- id: fapi
+  name: FAPI (Financial-grade API)
+  conforms: claimed
+  evidence:
+    url: https://portx.io/about-us/trust
+    status: 200
+    claim: FAPI named alongside SOC 2 and ISO 27001 as a maintained standard.
+  verification_note: >-
+    Not verifiable from the published contract. FAPI requires specific OAuth 2.0 /
+    OpenID Connect profile behaviour (PAR, JARM or signed request objects, sender-
+    constrained tokens via mTLS or DPoP). The ORCA description declares only a generic
+    http/bearer JWT scheme and an openIdConnect scheme, and its openIdConnectUrl points
+    at a localhost Keycloak realm placeholder, so no FAPI profile behaviour is asserted
+    in the contract. Confirming this needs an authenticated deployment.
+- id: fdx
+  name: FDX (Financial Data Exchange)
+  conforms: claimed
+  evidence:
+    url: https://portx.io/llms.txt
+    status: 200
+    claim: FDX listed among the standards PortX aligns to; also named on the ORCA one-pager.
+  verification_note: >-
+    No FDX-shaped surface (no /fdx/ path family, no FDX resource naming) appears in the
+    published ORCA description. PortX blogs about CFPB 1033 and FDX readiness, so this
+    reads as strategic alignment rather than a shipped FDX API.
+- id: cufx
+  name: CUFX (Credit Union Financial Exchange)
+  conforms: claimed
+  evidence:
+    url: https://portx.io/llms.txt
+    status: 200
+    claim: CUFX listed among the standards ORCA aligns to.
+  verification_note: >-
+    Plausible given the credit-union focus and the Symitar/Corelation core connectors,
+    but no CUFX message or schema naming is present in the published ORCA description.
+- id: oidc
+  name: OpenID Connect
+  conforms: true
+  evidence:
+    contract_location: components.securitySchemes.openIdConnect of the ORCA description
+    claim: >-
+      An openIdConnect security scheme is declared as one of the two top-level security
+      options. Its openIdConnectUrl is a localhost Keycloak placeholder
+      (http://localhost:8083/auth/realms/openbanking/.well-known/openid-configuration),
+      consistent with per-institution connector deployment where each customer supplies
+      its own issuer.
+- id: oauth2
+  name: OAuth 2.0
+  conforms: true
+  evidence:
+    url: https://orca-docs.portx.io/docs/getting-started/
+    status: 200
+    claim: >-
+      Getting Started documents a client_credentials grant exchanged at a token endpoint
+      for a bearer access token.
+- id: rfc9457
+  name: RFC 9457 Problem Details
+  conforms: false
+  evidence:
+    claim: >-
+      Errors use a bespoke JSON envelope (code, message, details[], innerError,
+      debugMessage) served as application/json. No application/problem+json media type
+      and no RFC 9457 members (type, title, status, detail, instance) appear anywhere in
+      the published description.
+- id: pagination
+  name: Cursor pagination
+  conforms: true
+  evidence:
+    contract_location: components.parameters (pageCursor, pageLimit, pageFirstCursor, pageTotal)
+    claim: >-
+      Opaque-cursor pagination declared as reusable parameters — `cursor` and `limit`
+      (1-100) on the request, `Pagination-Cursor` and `Pagination-Total` on the response.
+- id: idempotency
+  name: Idempotency keys
+  conforms: true
+  evidence:
+    contract_location: components.parameters.idempotencyId
+    claim: >-
+      An `idempotencyId` request header is declared as a reusable parameter and applied
+      to all 27 POST operations in the description. See conventions/.
+- id: rate-limit-headers
+  name: RateLimit header fields
+  conforms: false
+  evidence:
+    claim: >-
+      No RateLimit-*, X-RateLimit-* or Retry-After header is declared anywhere in the
+      published description, and no 429 response is defined on any operation.
+
+regimes:
+  sector: banking
+  applicable:
+  - US banking / core processing
+  - CFPB 1033 open banking (prospective, via FDX alignment)
+  note: >-
+    PortX operates as a technology provider to regulated financial institutions rather
+    than as a regulated institution itself; ORCA connects to bank cores under each
+    institution's own regulatory perimeter.
+
+x-evidence:
+- url: https://portx.io/about-us/trust
+  status: 200
+- url: https://portx.io/llms.txt
+  status: 200
+- url: https://portx.io/print/orca-onepager
+  status: 200
+- url: https://orca-docs.portx.io/docs/getting-started/
+  status: 200

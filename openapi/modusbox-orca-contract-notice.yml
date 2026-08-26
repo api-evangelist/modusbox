@@ -1,0 +1,136 @@
+generated: '2026-08-26'
+method: probed
+source: https://orca-docs.portx.io/specs/accounts-api-0.16.3.yaml
+
+# WHY THIS FILE EXISTS INSTEAD OF A MIRRORED SPEC
+# ----------------------------------------------
+# PortX (formerly ModusBox) publishes a real, substantial OpenAPI 3.1.0 description of
+# the ORCA API. It was located, fetched anonymously (HTTP 200) and parsed during this
+# pass. It is NOT mirrored into this repo, and no artifact in this repo is derived from
+# its contents, because the specification's own `info.license` designates it as governed
+# by the "ORCA Evaluation and Access License", whose published text expressly forbids
+# exactly that. This file records the contract's existence and its public, externally
+# observable facts so the catalog is honest about what PortX ships, without republishing
+# licensed material.
+#
+# A publicly reachable URL is not a licence to redistribute. Recorded here rather than
+# resolved unilaterally: whether API Evangelist mirrors this spec is a decision for a
+# human, and the clean path is to ask PortX for written permission (orca@portx.io).
+
+contract:
+  discovered: true
+  format: OpenAPI
+  spec_version: 3.1.0
+  api_version: 0.16.3
+  url: https://orca-docs.portx.io/specs/accounts-api-0.16.3.yaml
+  http_status: 200
+  content_type: text/yaml
+  bytes: 623465
+  anonymous_fetch: true          # no credentials, no cookie, no licence click-through required
+  rendered_by: Stoplight Elements 9.0.21 at https://orca-docs.portx.io/api/
+  mirrored_into_repo: false
+  mirror_blocked_by: orca-evaluation-and-access-license
+
+# Ownership check (STEP 0c) — the spec belongs to THIS company.
+ownership:
+  verdict: confirmed
+  evidence:
+    info_title: PortX ORCA APIs
+    info_contact_email: orca@portx.io
+    info_license_url: https://orca-docs.portx.io/license/
+    served_from: orca-docs.portx.io
+    licensor_named_in_license_text: PortX, Inc., a Delaware corporation
+  rename_note: >-
+    modusbox.com and www.modusbox.com both 301 to portx.io (probed 2026-08-26, HTTP 200
+    final URL https://portx.io/). ModusBox operates as PortX, Inc.; the GitHub org
+    github.com/portx-io is named "PortX, Inc." and links blog https://www.portx.io. This
+    is a rename, which is one of the legitimate different-domain cases, so a contract on
+    portx.io hosts is correctly attributed to the modusbox slug.
+
+licence:
+  name: ORCA Evaluation and Access License Agreement
+  url: https://orca-docs.portx.io/license/
+  licensor: PortX, Inc.
+  acceptance: >-
+    Click-through, or automatically on first access to the ORCA Materials (Section 8.14).
+    orca-docs.portx.io serves a client-side localStorage modal (assets/js/license-gate.js)
+    over every page except the home page and the licence page itself; the spec file under
+    /specs/ is served without any gate.
+  term_days: 90
+  restrictions_relevant_to_this_pipeline:
+  - section: '2.3'
+    effect: >-
+      Licensee shall not copy, reproduce, distribute, publish, or disclose the ORCA
+      Materials to any third party without PortX's prior written consent.
+  - section: '2.4'
+    effect: >-
+      AI Training Prohibition — the ORCA Materials may not be used to train, fine-tune,
+      develop or improve any AI System, used as a benchmark or evaluation dataset, or
+      otherwise ingested or processed by any AI System.
+  - section: '4'
+    effect: >-
+      The ORCA Materials are defined as Confidential Information; the confidentiality
+      obligation survives termination indefinitely.
+  - section: '8.5'
+    effect: >-
+      PortX reserves post-termination audit rights specifically to verify compliance with
+      the Section 2.4 AI training prohibition.
+  consequence_for_this_repo: >-
+    No openapi/ mirror, no overlays/, no skills/, no tool crosswalk, no derived data
+    model and no derived error catalogue were written. Those artifacts would each be a
+    re-expression of licensed confidential material. Everything recorded in this repo is
+    sourced from PortX's ungated public marketing site (portx.io, including its own
+    llms.txt), from public package registries, from DNS/TLS probes, or from these
+    externally observable facts about the contract.
+
+# Externally observable shape. These are counts and identifiers, recorded so the catalog
+# can describe the API accurately; they are not a reproduction of the specification.
+observed_shape:
+  paths: 74
+  operations: 112
+  tags: 16
+  component_schemas: 594
+  operations_with_operation_id: 112
+  operations_with_summary: 112
+  operations_with_tags: 112
+  operations_deprecated: 0
+  security_schemes:
+  - jwt (http bearer, JWT)
+  - openIdConnect
+  servers_templated: true
+  servers_note: >-
+    Single templated server https://{host} described as "ORCA-compliant connector
+    deployment", host variable default api.example.com. ORCA runs as a per-institution
+    connector instance (the spec names symitar-orca and fco-premier-orca as examples),
+    so there is no single shared production host.
+  domain_standard: ISO 20022
+  tag_names:
+  - Accounts
+  - Parties
+  - Transactions
+  - Products
+  - Cards
+  - Loans
+  - Collaterals
+  - Account Holds
+  - Account Stops
+  - Account Standing Orders
+  - Address Book
+  - Credit Transfers
+  - Internal Transfers
+  - Ledger Accounts
+  - Relationships
+  - System
+
+x-evidence:
+- url: https://orca-docs.portx.io/specs/accounts-api-0.16.3.yaml
+  status: 200
+- url: https://orca-docs.portx.io/specs/accounts-api-0.16.2.yaml
+  status: 200
+- url: https://orca-docs.portx.io/api/
+  status: 200
+- url: https://orca-docs.portx.io/license/
+  status: 200
+- url: https://modusbox.com/
+  status: 200
+  note: redirects to https://portx.io/

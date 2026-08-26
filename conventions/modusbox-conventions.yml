@@ -1,0 +1,216 @@
+generated: '2026-08-26'
+method: searched
+source: >-
+  https://orca-docs.portx.io/docs/getting-started/ and the reusable parameter/response
+  declarations of the published ORCA OpenAPI 3.1.0 description
+  (https://orca-docs.portx.io/specs/accounts-api-0.16.3.yaml).
+scope: PortX ORCA (Open Reusable Core API) 0.16.3
+
+auth_style:
+  model: bearer JWT via OAuth 2.0 client_credentials, or OpenID Connect
+  header: 'Authorization: Bearer <token>'
+  detail: authentication/modusbox-authentication.yml
+
+idempotency:
+  supported: true
+  mechanism: request header
+  header: idempotencyId
+  required: false
+  scope: per write operation
+  applied_to: all 27 POST operations in the 0.16.3 description
+  declared_as: a reusable component parameter, referenced by each POST
+  description_verbatim: Idempotency identifier used by the client when making repeated calls
+  retention_window: null
+  retention_note: >-
+    PortX does not state how long an idempotencyId is remembered, what happens on a
+    replay (whether the original response is returned or a conflict is raised), whether
+    the key is scoped per endpoint or globally, or what occurs when the same key arrives
+    with a different body. The header exists and is wired to every write, which is the
+    hard part; the replay semantics that make it safe to rely on are undocumented.
+  conflict_status_code: null
+  grade: documented
+
+pagination:
+  style: opaque cursor
+  request_params:
+  - name: cursor
+    in: query
+    description: Opaque string value at which to start retrieving resources.
+  - name: limit
+    in: query
+    range: 1-100
+    description: Number of resources to return in one request.
+  response_headers:
+  - name: Pagination-Cursor
+    description: Cursor for the next page.
+  - name: Pagination-Total
+    description: Total number of resources.
+  note: >-
+    Pagination state travels out of band — the next cursor and the total come back as
+    response HEADERS rather than in a response envelope. That is unusual and worth
+    flagging: a client that only reads the JSON body cannot page.
+
+filtering:
+  style: suffixed comparison operators on query parameters
+  operators:
+  - suffix: .eq
+    meaning: equals
+  - suffix: .lte
+    meaning: less than or equal
+  - suffix: .gte
+    meaning: greater than or equal
+  - suffix: .inc
+    meaning: substring includes
+  examples:
+  - accountId.eq
+  - amount.gte
+  - audit.lastModificationDate.lte
+  - party.name.inc
+  note: >-
+    A consistent, well-designed filter grammar declared as reusable parameters rather
+    than repeated ad hoc per operation.
+
+request_modes:
+  note: >-
+    ORCA exposes connector behaviour through Core-* request headers, which is a distinctive
+    and genuinely useful design — the caller negotiates how strictly the connector
+    validates and how much it returns, because backing cores differ in capability.
+  headers:
+  - name: Core-Validation-Mode
+    values: [ENFORCING, PERMISSIVE, DISABLED]
+    purpose: How the API validates requests against the core's validation capabilities.
+  - name: Core-Content-Mode
+    values: [SUMMARIZED, DETAILED]
+    purpose: How much content is requested against the core's content capabilities.
+  - name: Core-Format-Mode
+    values: [CARD_NUMBER_MASKED, CARD_NUMBER_NOT_MASKED, ID_MASKED, ID_NOT_MASKED, MASKED, NOT_MASKED]
+    purpose: Masking format for card numbers and identifiers in responses.
+
+error_envelope:
+  media_type: application/json
+  rfc9457: false
+  shape:
+    required: [code, message]
+    optional: [details, innerError, debugMessage]
+  detail: >-
+    `code` is a short programmatic string (example given: InvalidRequest), `message` is a
+    message object, `details[]` carries per-error entries each with code, message and
+    target, and `innerError` nests recursively for more specific causes. `debugMessage`
+    is explicitly documented as debug content that should not be relied on.
+  status_codes_defined: [200, 202, 204, 400, 404, 405, 415, 500, 501, 502]
+  note: >-
+    Coverage of error responses is thorough — 400, 405, 500 and 501 are defined on
+    essentially every operation, and 501 Not Implemented is a first-class outcome because
+    a given banking core may simply not support an operation. That is honest modelling of
+    a connector API. See errors note below.
+  no_401_or_403: >-
+    Notably, no 401 or 403 response is defined on ANY operation despite the API being
+    authenticated, and no 429 is defined. An agent cannot tell from the contract how an
+    auth failure or a throttle is signalled.
+
+versioning:
+  detail: lifecycle/modusbox-lifecycle.yml
+  scheme: semver, currently 0.16.3, base path /orca/v1
+
+rate_limit_signaling:
+  headers_declared: false
+  status_on_exhaustion: null
+  detail: rate-limits/modusbox-rate-limits.yml
+
+request_id_tracing:
+  supported: false
+  note: >-
+    No request-id, trace-id or correlation-id header is declared anywhere in the published
+    description. There is no documented way to quote a failing call back to PortX support.
+
+dry_run_mode:
+  supported: partial
+  note: >-
+    There is no dry-run or preview flag. The closest facility is
+    Core-Validation-Mode: ENFORCING, which tightens validation but still executes the
+    request — it lets a caller fail fast, not rehearse.
+
+# ---------------------------------------------------------------------------
+# REVERSIBILITY — can an agent take an action back? (0.12.0, 15th dimension)
+# ---------------------------------------------------------------------------
+reversibility:
+  applicable: true
+  grade: documented
+  grade_basis: >-
+    Reversal paths exist and are first-class in the contract, but PortX states no window
+    for any of them. Per the grading rule a reversal path alone is `documented`; a
+    reversal path plus a stated window would be `verified`. No window is asserted here
+    because none is published, and inventing one for a banking API that moves real money
+    would be the most expensive possible error in this artifact.
+  reversal_operations:
+  - action: Internal transfer
+    forward_operation: requestInternalTransfer
+    reversal_operation: requestInternalTransferCancellation
+    method_path: POST /internal-transfers/{transferId}/cancellation
+    window: null
+    window_documented: false
+    note: >-
+      A dedicated cancellation sub-resource. The response is described as "Matching
+      Transfer. The cancellation will be processed", i.e. cancellation is itself
+      asynchronous and acceptance is not confirmation. A separate
+      requestInternalTransferConfirmation operation exists, so transfers follow a
+      request / confirm / cancel lifecycle.
+  - action: Credit transfer (payment)
+    forward_operation: initiateCreditTransfer
+    reversal_operation: initiateCreditTransferCancellation
+    method_path: POST /credit-transfers/{paymentId}/cancellation
+    window: null
+    window_documented: false
+    note: >-
+      The single most consequential write in the API and the one where a window matters
+      most. Real reversibility here is bounded by the underlying payment rail (ACH, wire,
+      RTP, FedNow each differ, and RTP/FedNow are irrevocable once settled), but the
+      contract and docs state nothing about which cancellations can still succeed.
+  - action: Account hold
+    forward_operation: createAccountHold
+    reversal_operation: deleteAccountHold
+    method_path: DELETE /holds/{holdId}
+    window: null
+    window_documented: false
+  - action: Stop payment
+    forward_operation: createAccountStop
+    reversal_operation: deleteAccountStop
+    method_path: DELETE /accounts/{accountId}/stops/{stopId}
+    window: null
+    window_documented: false
+  - action: Collateral
+    forward_operation: createCollateral
+    reversal_operation: deleteCollateral
+    method_path: DELETE /collaterals/{collateralId}
+    window: null
+    window_documented: false
+  - action: Loan collateral link
+    forward_operation: linkCollateralToLoan
+    reversal_operation: unlinkCollateralFromLoan
+    method_path: DELETE /loans/{loanId}/collateral-links/{collateralLinkId}
+    window: null
+    window_documented: false
+  irreversible_writes:
+    note: >-
+      These write surfaces have NO reversal operation in the contract. A monetary posting
+      cannot be undone through ORCA; correcting one requires an opposing transaction.
+    operations:
+    - createDeposit
+    - createWithdrawal
+    - createLoanDeposit
+    - createLoanWithdrawal
+    - openBankingAccount
+    - openLoanAccount
+    - activatePaymentCard
+  gaps:
+  - No reversal window stated for any reversible action.
+  - No documented outcome when a cancellation arrives too late.
+  - Monetary postings (deposits and withdrawals) have no reversal or void operation.
+
+x-evidence:
+- url: https://orca-docs.portx.io/docs/getting-started/
+  status: 200
+- url: https://orca-docs.portx.io/api/
+  status: 200
+- url: https://orca-docs.portx.io/specs/accounts-api-0.16.3.yaml
+  status: 200

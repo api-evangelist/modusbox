@@ -1,23 +1,139 @@
 aid: modusbox
 name: ModusBox
-description: 'ModusBox is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'ModusBox now operates as PortX, Inc. — modusbox.com 301s to portx.io. PortX
+  is an AI-native integration platform (iPaaS) purpose-built for community banks, credit
+  unions and fintechs. The PortX Platform spans Integration Manager (core, fintech and
+  enterprise API integration), Data Manager (a governed real-time data lakehouse powering
+  Customer 360), Payment Manager (ACH, wire, RTP and FedNow payment orchestration) and
+  PiXi AI as the embedded intelligence layer. Its ORCA (Open Reusable Core API)
+  specification is an ISO 20022-aligned JSON/REST contract for connecting to major US
+  banking cores including Symitar, Fiserv Premier, Finastra Phoenix and Corelation
+  KeyStone. PortX is SOC 2 Type II and ISO/IEC 27001 certified and aligns to FAPI, FDX,
+  ISO 20022, CUFX and PCI.'
+image: https://framerusercontent.com/assets/BxjbU6I8USGsmyN7a1vxW5CSg.png
 url: https://raw.githubusercontent.com/api-evangelist/modusbox/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-26'
 modified: '2026-08-26'
 tags:
 - Company
-apis: []
+- Banking
+- Core Banking
+- Credit Unions
+- Financial Services
+- Integration
+- iPaaS
+- Payments
+- ISO 20022
+- Open Banking
+- Data
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- name: PortX ORCA (Open Reusable Core API)
+  description: 'ORCA is PortX''s universal, standards-based REST contract for US banking
+    core connectivity — an ISO 20022-aligned JSON/REST specification covering bank account
+    opening, maintenance, closing and reporting, plus parties, transactions, cards,
+    loans, collaterals, ledger accounts, internal transfers and credit transfers. The
+    published OpenAPI 3.1.0 description carries 112 operations across 16 tags. ORCA is
+    deployed as a per-institution connector (for example a symitar-orca or fco-premier-orca
+    instance), so the contract''s servers block is templated rather than naming one shared
+    host. Access to the specification is governed by the ORCA Evaluation and Access License.'
+  humanURL: https://orca-docs.portx.io/
+  baseURL: https://api.portx.io/orca/v1
+  x-base-url-note: 'Base URL as documented by PortX at https://orca-docs.portx.io/docs/getting-started/.
+    Probed 2026-08-26: api.portx.io does not resolve (NXDOMAIN), and the published OpenAPI
+    servers block is templated (https://{host}, "ORCA-compliant connector deployment"),
+    so real traffic goes to a per-institution connector host issued by PortX rather than
+    to a shared public gateway.'
+  tags:
+  - Banking
+  - Core Banking
+  - Accounts
+  - Payments
+  - ISO 20022
+  properties:
+  - type: Documentation
+    url: https://orca-docs.portx.io/
+  - type: APIReference
+    url: https://orca-docs.portx.io/api/
+  - type: GettingStarted
+    url: https://orca-docs.portx.io/docs/getting-started/
+  - type: ChangeLog
+    url: https://orca-docs.portx.io/docs/changelog/
+  - type: Authentication
+    url: authentication/modusbox-authentication.yml
+  - type: License
+    url: https://orca-docs.portx.io/license/
 common:
+- type: TrustCenter
+  url: security/modusbox-trust-center.yml
 - type: Website
-  url: https://www.nasdaqprivatemarket.com/
+  url: https://portx.io/
+- type: DeveloperPortal
+  url: https://orca-docs.portx.io/
+- type: Documentation
+  url: https://orca-docs.portx.io/
+- type: APIReference
+  url: https://orca-docs.portx.io/api/
+- type: GettingStarted
+  url: https://orca-docs.portx.io/docs/getting-started/
+- type: Support
+  url: https://portx.atlassian.net/servicedesk/customer/portals
+- type: Blog
+  url: https://portx.io/blog
+- type: GitHubOrganization
+  url: https://github.com/modusbox
+- type: TermsOfService
+  url: https://portx.io/about-us/legal/master-subscription-agreement
+- type: PrivacyPolicy
+  url: https://portx.io/about-us/legal/portx-privacy-notice
+- type: SignUp
+  url: https://portx.io/contact
+- type: StatusPage
+  url: https://status.portx.io/
+- type: Compliance
+  url: conformance/modusbox-conformance.yml
+- type: Conformance
+  url: conformance/modusbox-conformance.yml
+- type: ChangeLog
+  url: changelog/modusbox-changelog.yml
+- type: Lifecycle
+  url: lifecycle/modusbox-lifecycle.yml
+- type: Authentication
+  url: authentication/modusbox-authentication.yml
+- type: Packages
+  url: packages/modusbox-packages.yml
+- type: LLMsTxt
+  url: llms/modusbox-llms.txt
+- type: RateLimits
+  url: rate-limits/modusbox-rate-limits.yml
+- type: Plans
+  url: plans/modusbox-plans-pricing.yml
+- type: DomainSecurity
+  url: security/modusbox-domain-security.yml
+- type: Conventions
+  url: conventions/modusbox-conventions.yml
+
+x-contract-notice:
+  url: openapi/modusbox-orca-contract-notice.yml
+  summary: >-
+    PortX publishes a real OpenAPI 3.1.0 description of the ORCA API (112 operations,
+    594 schemas) at https://orca-docs.portx.io/specs/accounts-api-0.16.3.yaml, fetchable
+    anonymously. It is deliberately NOT mirrored into this repo and nothing here is
+    derived from its contents: the spec's own info.license designates the ORCA Evaluation
+    and Access License, which prohibits reproduction or publication to third parties
+    (Section 2.3), prohibits ingestion or processing by any AI System (Section 2.4), and
+    defines the materials as Confidential Information (Section 4). Mirroring it is a
+    decision for a human; the clean path is written permission from orca@portx.io.
+
+x-enrichment:
+  date: '2026-08-26'
+  status: enriched
+  artifacts_added: 13
+  pass: local-v1
