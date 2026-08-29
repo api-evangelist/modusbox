@@ -10,6 +10,17 @@ description: 'ModusBox now operates as PortX, Inc. — modusbox.com 301s to port
   banking cores including Symitar, Fiserv Premier, Finastra Phoenix and Corelation
   KeyStone. PortX is SOC 2 Type II and ISO/IEC 27001 certified and aligns to FAPI, FDX,
   ISO 20022, CUFX and PCI.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://framerusercontent.com/assets/BxjbU6I8USGsmyN7a1vxW5CSg.png
 url: https://raw.githubusercontent.com/api-evangelist/modusbox/refs/heads/main/apis.yml
 x-type: company
