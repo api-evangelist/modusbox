@@ -33,6 +33,18 @@ tags:
 - Banking
 - Core Banking
 - Credit Unions
+- Financial-Services
+- Integration
+- iPaaS
+- Payments
+- ISO 20022
+- Open Banking
+- Data
+tags_raw:
+- Company
+- Banking
+- Core Banking
+- Credit Unions
 - Financial Services
 - Integration
 - iPaaS
@@ -63,6 +75,12 @@ apis:
     so real traffic goes to a per-institution connector host issued by PortX rather than
     to a shared public gateway.'
   tags:
+  - Banking
+  - Core Banking
+  - Account
+  - Payments
+  - ISO 20022
+  tags_raw:
   - Banking
   - Core Banking
   - Accounts
