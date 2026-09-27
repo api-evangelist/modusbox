@@ -48,7 +48,7 @@ tags:
 - Banking
 - Core Banking
 - Credit Union
-- Financial-Services
+- Financial Services
 - Integration
 - iPaaS
 - Payments
@@ -67,6 +67,7 @@ tags_raw:
 - ISO 20022
 - Open Banking
 - Data
+- Financial-Services
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
